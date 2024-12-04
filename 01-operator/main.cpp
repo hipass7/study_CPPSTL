@@ -47,11 +47,17 @@ public:
 
     int GetX() const { return x; }
     int GetY() const { return y; }
+    friend const Point operator-(const Point& arg1, const Point& arg2);
 };
 
 const bool operator!=(const Point& arg1, const Point& arg2)
 {
     return arg1.GetX() != arg2.GetX() || arg1.GetY() != arg2.GetY() ? true : false;
+}
+
+const Point operator-(const Point& arg1, const Point& arg2)
+{
+    return Point(arg1.x - arg2.x, arg1.y - arg2.y);
 }
 
 int main()
