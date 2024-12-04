@@ -39,7 +39,20 @@ public:
 
         return pt;
     }
+
+    bool operator==(const Point& arg) const
+    {
+        return x == arg.x && y == arg.y ? true : false;
+    }
+
+    int GetX() const { return x; }
+    int GetY() const { return y; }
 };
+
+const bool operator!=(const Point& arg1, const Point& arg2)
+{
+    return arg1.GetX() != arg2.GetX() || arg1.GetY() != arg2.GetY() ? true : false;
+}
 
 int main()
 {
@@ -58,6 +71,25 @@ int main()
     ret = p2++;
     ret.Print();
     p2.Print();
+
+    if (p1 == p2)
+    {
+        // do nothing
+    }
+    else
+    {
+        cout << "p1 != p2" << endl;
+    }
+
+    if (p1 != p2)
+    {
+        cout << "p1 != p2" << endl;
+    }
+
+    if (operator!=(p1, p2))
+    {
+        cout << "p1 != p2" << endl;
+    }
 
     return 0;
 }
