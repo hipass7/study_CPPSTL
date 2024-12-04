@@ -10,16 +10,34 @@ public:
 
     void Print() const
     {
-        cout << x << ',' << y << endl;
+        cout << x << ", " << y << endl;
     }
 
-    Point operator+(Point arg)
+    Point operator+(Point arg) const
     {
         Point a;
-        cout << "operator+() 함수 호출" << endl;
         
         a.x = x + arg.x;
         a.y = y + arg.y;
+
+        return a;
+    }
+
+    const Point& operator++() // 전위 연산자
+    {
+        ++x;
+        ++y;
+
+        return *this;
+    }
+
+    const Point operator++(int) // 후위 연산자
+    {
+        Point pt(x, y);
+        ++x;
+        ++y;
+
+        return pt;
     }
 };
 
@@ -29,6 +47,17 @@ int main()
     Point ret;
 
     ret = p1 + p2;
+    ret.Print();
+
+    ret = p1.operator+(p2);
+    ret.Print();
+
+    ret = ++p1;
+    ret.Print();
+    
+    ret = p2++;
+    ret.Print();
+    p2.Print();
 
     return 0;
 }
