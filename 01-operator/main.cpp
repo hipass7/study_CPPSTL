@@ -50,6 +50,14 @@ public:
     friend const Point operator-(const Point& arg1, const Point& arg2);
 };
 
+struct FuncObject
+{
+    void operator() (int arg)
+    {
+        cout << "output : " << arg << endl;
+    }
+};
+
 const bool operator!=(const Point& arg1, const Point& arg2)
 {
     return arg1.GetX() != arg2.GetX() || arg1.GetY() != arg2.GetY() ? true : false;
@@ -58,6 +66,11 @@ const bool operator!=(const Point& arg1, const Point& arg2)
 const Point operator-(const Point& arg1, const Point& arg2)
 {
     return Point(arg1.x - arg2.x, arg1.y - arg2.y);
+}
+
+void Print1(int arg)
+{
+    cout << "output : " << arg << endl;
 }
 
 int main()
@@ -96,6 +109,12 @@ int main()
     {
         cout << "p1 != p2" << endl;
     }
+
+    FuncObject Pr;
+    void (*Pr2)(int) = Print1;
+
+    Pr(10);
+    Pr2(10);
 
     return 0;
 }
