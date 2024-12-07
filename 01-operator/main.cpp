@@ -5,6 +5,7 @@ class Point
 {
     int x;
     int y;
+    int *arr;
 public:
     Point (int _x = 0, int _y = 0) : x(_x), y(_y) {}
 
@@ -59,6 +60,11 @@ public:
         {
             return y;
         }
+    }
+
+    int& operator[](int idx) // 쓰기도 가능해야하므로 const와 비const 모두 지원해야함
+    {
+        return arr[idx];
     }
 };
 
