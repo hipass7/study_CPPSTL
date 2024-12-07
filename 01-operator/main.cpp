@@ -48,6 +48,18 @@ public:
     int GetX() const { return x; }
     int GetY() const { return y; }
     friend const Point operator-(const Point& arg1, const Point& arg2);
+
+    int operator[](int idx) const
+    {
+        if (idx == 0)
+        {
+            return x;
+        }
+        else
+        {
+            return y;
+        }
+    }
 };
 
 struct FuncObject
@@ -55,6 +67,11 @@ struct FuncObject
     void operator() (int arg)
     {
         cout << "output : " << arg << endl;
+    }
+
+    void operator() (int arg1, int arg2)
+    {
+        cout << "arg1 : " << arg1 << " arg2 : " << arg2 << endl;
     }
 };
 
@@ -116,5 +133,9 @@ int main()
     Pr(10);
     Pr2(10);
 
+    Pr(2, 3);
+
+    Pr(p1[0], p1.operator[](2));
+    
     return 0;
 }
